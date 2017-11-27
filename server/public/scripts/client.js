@@ -52,7 +52,7 @@ function completeTask(){
 
     $.ajax({
         method: 'PUT',
-        url: '/tasks/complete' + taskToComplete,
+        url: '/tasks/complete/' + taskToComplete,
     }).then(function(response){
         console.log('response', response);
         getAllTasks();
