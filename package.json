@@ -1,0 +1,26 @@
+{
+  "name": "elnath-todo-weekend-3-live-solve",
+  "version": "1.0.0",
+  "description": "Live solve for Elnath Weekend 3 ToDo Full Stack application with jQuery, Express, Node, and SQL",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decookr/elnath-todo-weekend-3-live-solve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/decookr/elnath-todo-weekend-3-live-solve/issues"
+  },
+  "homepage": "https://github.com/decookr/elnath-todo-weekend-3-live-solve#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pg": "^7.4.0"
+  }
+}
