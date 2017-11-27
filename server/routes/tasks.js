@@ -11,7 +11,7 @@ router.get('/', function(req,res){
             console.log('Error connecting to database', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query('SELECT * FROM tasks;', function(errorMakingQuery, result){
+            client.query('SELECT * FROM tasks ORDER BY is_completed, id;', function(errorMakingQuery, result){
                 done();
                 if(errorMakingQuery){
                     console.log('Error making query', errorMakingQuery);
@@ -44,7 +44,43 @@ router.post('/', function (req,res){
     });
 })
 
+router.delete('/remove/:id', function (req,res){
+    pool.connect(function(errorConnectingToDatabase, client, done){
+        if(errorConnectingToDatabase){
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`DELETE FROM tasks WHERE id=$1;`, [req.params.id], function(errorMakingQuery, result){
+                done();
+                if(errorMakingQuery){
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else{
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+})
 
+router.put('/complete/:id', function (req,res){
+    pool.connect(function(errorConnectingToDatabase, client, done){
+        if(errorConnectingToDatabase){
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE tasks SET is_completed = TRUE WHERE "id"=$1;`, [req.params.id], function(errorMakingQuery, result){
+                done();
+                if(errorMakingQuery){
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else{
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+})
 
 
 
